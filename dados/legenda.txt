@@ -1,0 +1,4 @@
+0 --> MU cronômetros alinhados
+1 --> MU cronômetros alternados 
+2 --> MUV cronômetros alinhados
+3 --> MUV cronômetros alternados
