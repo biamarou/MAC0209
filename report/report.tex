@@ -21,8 +21,11 @@
 \maketitle
 
 \section*{Introdução}
-Neste primeiro experimento foi proposto simularmos o MRU (movimento retilíneo uniforme) 
-e o MRUV (movimento retilíneo uniformemente variado). 
+Neste primeiro experimento foi proposto simularmos o movimento retilíneo
+uniforme (MRU), na qual o corpo se movimento em uma trajetória retilínea com
+velocidade constante, e o movimenta retilíneo uniformemente variado (MRUV),
+o movimento, novamente, será retilíneo porém desta vez, a velocidade varia
+segundo uma aceleração constante.
 
 \section*{Método}
 Utilizamos o acelerômetro do celular através do Physics Tool Box para
@@ -40,12 +43,21 @@ que poderiam surgir caso os acelerômetros (sensor) dos celulares fossem diferen
 
 Para a planilha de dados amostrais, usamos média aritmética simples.
 
-Para modelar os dados obtidos pelo Physics Tool Box usamos as equações: 
-$$v = \frac{\Delta x}{\Delta t}$$ e $$x = x_0 + v_0 t + \frac{a}{2} t^2$$
+Para modelar os dados obtidos pelo Physics Tool Box usamos as equações: \\
+\\
+Para o Movimento Retilíneo Uniforme:
+$$v = \frac{\Delta x}{\Delta t} \quad a = \frac{\Delta v}{\Delta t}$$
+Para o Movimento Retilíneo Unfiormente Variado:
+$$x = x_0 + v_0 t + \frac{a}{2} t^2 \quad v = v_0 t + at$$
 
 \section*{Verificação de Programa}
 
 \section*{Análise}
+Ao calcularmos a velocidade manualmente usando somente os cronômetros,
+obtivemos resultados parecidos com os calculados através do programa usando as
+tabelas \textit{.csv}.
+
+Porém ao calcularmos a aceleração
 
 \section*{Interpretação}
 
