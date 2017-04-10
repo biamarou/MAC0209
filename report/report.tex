@@ -1,0 +1,79 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\renewcommand{\rmdefault}{ptm}
+\graphicspath{{./images/}}
+
+\title{Relatório EP1 de MAC0209}
+\author{Beatriz Marouelli, Bruno Scholl, João Henrique, 
+\\ Leonardo Lana, Lucas Yau, Victor Seiji}
+\date{10 de abril de 2017}
+
+\begin{document}
+\maketitle
+
+\section*{Introdução}
+Neste primeiro experimento foi proposto simularmos o MRU (movimento retilíneo uniforme) 
+e o MRUV (movimento retilíneo uniformemente variado). 
+
+\section*{Método}
+Utilizamos o acelerômetro do celular através do Physics Tool Box para
+determinarmos a aceleração. Para facilitar, toda pessoa que fizesse o experimento 
+tanto em MRU quanto MRUV, ficava parada com o celular estável na mão por 5 segundos, 
+assim ao analizarmos os dados teríamos um parâmetro para a estabilidade, o mesmo 
+foi feito ao fim do experimento.
+
+A fim de atingirmos uma precisão maior, pedimos auxílio de outro grupo, desta
+forma poderíamos ter 6 cronômetros, dois alinhados em lados opostos do trajeto
+a cada 10 metros e posteriormente, um a cada 5 alternando os lados.
+
+Usamos o mesmo celular para todos os experimentos para evitar inconsistências,
+que poderiam surgir caso os acelerômetros (sensor) dos celulares fossem diferentes.
+
+Para a planilha de dados amostrais, usamos média aritmética simples.
+
+Para modelar os dados obtidos pelo Physics Tool Box usamos as equações: 
+$$v = \frac{\Delta x}{\Delta t}$$ e $$x = x_0 + v_0 t + \frac{a}{2} t^2$$
+
+\section*{Verificação de Programa}
+
+\section*{Análise}
+
+\section*{Interpretação}
+
+\section*{Critícas}
+Para os modelos fisícos não houve grandes avanços, usamos somente modelos
+simples os quais já dominávamos. A grande novidade foi a dificuldade em coletar
+dados minimizando variavéis que poderiam acentuar os erros, nos quais o fator
+humano (manter a velocidade/aceleração constante, atraso para parar o
+cronômetro, estabilizar o celular na mão) já cria uma margem de erro considerável. 
+
+No escopo computacional, já tinhamos conhecimento de \textit{\textbf{python}} e
+\textit{\textbf{matplotlib}}. A parte a qual nos tomou mais tempo foi consertar
+os dados das tabelas \textit{.csv}, para que elas pudessem ser utilizadas em
+nossos programas.
+
+\section*{Link do Vídeo}
+O link para o vídeo do experimento é:
+\url{https://www.youtube.com/watch?v=z1ODFN4LaS8}
+
+\section*{Dados}
+    \begin{figure}
+    \centering
+    Dados amostrais Beatriz Marouelli
+    \includegraphics[scale=0.45]{Bia.png}
+    \\ Dados amostrais Bruno Scholl
+    \includegraphics[scale=0.45]{Scholl.png}
+    \\ Dados amostrais Victor Seiji 
+    \includegraphics[scale=0.45]{Seiji.png}
+    \end{figure}
+
+\end{document}
