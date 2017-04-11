@@ -47,6 +47,13 @@ Para modelar os dados obtidos pelo Physics Tool Box usamos as equações simples
 de Newton, usando o método de Euler, assim atigimos um maior grau de precisão.
 
 \section*{Verificação de Programa}
+O programa usa do método de euler para o cálculo. Ele calcula os Delta Ts
+($\delta t$) entre cada par de posições dos cronômetros. Com isso, ele assume
+que as separações entre cronômetros são de 10m, e calcula as velocidades de
+acordo com os Deltas de posição ($\delta S$) assim, a velocidade na posição dada
+é calculada por $\frac{\delta S}{\delta t}$.
+A mesma coisa para o cálculo das acelerações. A aceleração na posição dada é
+calculada por $\frac{\delta v}{\delta t}$.
 
 \section*{Análise}
 Ao calcularmos a velocidade e aceleração manualmente, usando os dados amostrais
@@ -91,7 +98,7 @@ fez o mru.py, organização do grupo em geral e edição do vídeo.
 
 \textbf{Lucas Yau}: script de correção dos csv's.
 
-\textbf{Victor Seiji}: Corrigiu erros no MRU.py e ajudou na planilha.
+\textbf{Victor Seiji}: cobaia, corrigiu erros no MRU.py (Agora Simulation.py) e ajudou na planilha.
 
 \textbf{Todos}: ajudaram no experimento.
 

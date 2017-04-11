@@ -10,7 +10,7 @@ def main ():
         raise Exception ("No file found.")
 
     line = " "
-    
+
     with open(input_file, "r+") as f:
         count_MRU = 1
         count_MRUV = 1
@@ -21,7 +21,7 @@ def main ():
             if (line == ''):
                 break
             line = line.split()
-        
+
             if (line[0] == '0'):
                 data_MRU.append(line[1:3])
                 data_MRU.append(line[3:5])
@@ -37,62 +37,44 @@ def main ():
                 count_MRUV += 1
                 MRUV(data_MRUV)
 
-def MRU (data_MRU):            
+def MRU (data_MRU):
 #Calcula a velocidade em cada intervalo de tempo registrado no experimento,
 #e a partir desses dados, calcula a velocidade média.
-    v = [0.0]
-    t = [0.0]
-    media_tempo = 0
-    v_media = 0
+    v = []
+    t = []
 
     for i in range (len(data_MRU)):
-        media_tempo = (float(data_MRU[i][0]) + float(data_MRU[i][1]))/2
-        t.append(media_tempo)
-        v.append((i+1)*10/media_tempo) 
+        dt = (float(data_MRU[i][0]) + float(data_MRU[i][1]))/2
+        if i > 0:
+            dt -= (float(data_MRU[i - 1][0]) + float(data_MRU[i - 1][1]))/2
 
-    print("Tempos", t)    
+        t.append(dt)
+        v.append(10/dt)
+
+    print("Delta times", t)
     print("Velocidades", v)
 
-    for i in range(len(v)):
-        v_media += v[i]
-    v_media /= 4
-
-    print("Velocidade Média", v_media)
+    print("Velocidade Média", sum(v)/len(v))
+    return t, v
 
 def MRUV (data_MRUV):
 #Assim como no MRU, calcula a velocidade em cada intervalo de tempo registrado no experimento,
 #e a partir desses dados, calcula a velocidade média. Além disso, calcula a aceleração em cada
 #trecho marcado da trajetória e a aceleração média.
-    v = [0.0]
-    a = [0.0]
-    t = [0.0]
-    media_tempo = 0
-    ac_media = 0
-    v_media = 0
-    
-    for i in range (len(data_MRUV)):
-        media_tempo = (float(data_MRUV[i][0]) + float(data_MRUV[i][1]))/2
-        t.append(media_tempo)
-        v.append((i+1)*10/media_tempo)        
-    print("Tempos" ,t)    
-    print("Velocidades" ,v)
-
-    for i in range(len(v)):
-        v_media += v[i]
-    v_media /= 4
-    print("Velocidade Média", v_media)
+    t, v = MRU(data_MRUV)
+    a = []
 
     for i in range (len(data_MRUV)):
-        if (t[i] != 0):
-            a.append((v[i + 1] - v[i])/(t[i + 1] - t[i]))
+        dt = t[i]
+        dv = v[i]
+        if i > 0:
+            dv -= v[i - 1]
+        a.append(dv/dt)
 
-        print ("Acelerações", a)
+    print ("Acelerações", a)
 
-    for i in range(len(a)):
-        ac_media += a[i]
-    ac_media /= 4
-
-    print("Aceleração Média", ac_media)
+    print("Aceleração Média", sum(a)/len(a))
+    return t, v, a
 
 main()
 
