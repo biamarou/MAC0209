@@ -24,7 +24,8 @@ plot.invert_yaxis()
 
 # abre o arquivo com os dados a serem plotados no gráfico
 # supõe que cada linha do arquivo é da forma "x,y\n", onde
-# x é o tempo (em segundos), e y é o deslocamento (em metros)
+# x é o tempo (em segundos), e y é o deslocamento (em metros).
+# Ambos x e y devem ser números em ponto flutuante
 x = [0]
 y = [0]
 if len(sys.argv) > 1:
