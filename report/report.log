@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.10)  10 APR 2017 14:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.10)  10 APR 2017 22:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -706,69 +706,70 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 23.
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--49
+
+ []
+
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language append on input line 58.
+(babel)             in language append on input line 51.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language append on input line 58.
- [1
+(babel)             in language append on input line 51.
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 59.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 66.
- (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 76.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 83.
+
+(/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-<./images/Bia.png, id=17, 645.41125pt x 504.88625pt>
+<./images/Bia.png, id=16, 645.41125pt x 504.88625pt>
 File: ./images/Bia.png Graphic file (type png)
  <use ./images/Bia.png>
-Package pdftex.def Info: ./images/Bia.png used on input line 72.
+Package pdftex.def Info: ./images/Bia.png used on input line 89.
 (pdftex.def)             Requested size: 290.43237pt x 227.1967pt.
 
-<./images/Scholl.png, id=19, 644.4075pt x 508.90125pt>
+<./images/Scholl.png, id=18, 644.4075pt x 508.90125pt>
 File: ./images/Scholl.png Graphic file (type png)
 
 <use ./images/Scholl.png>
-Package pdftex.def Info: ./images/Scholl.png used on input line 74.
+Package pdftex.def Info: ./images/Scholl.png used on input line 91.
 (pdftex.def)             Requested size: 289.9807pt x 229.00345pt.
- <./images/Seiji.png, id=20, 647.41875pt x 505.89pt>
-File: ./images/Seiji.png Graphic file (type png)
-
-<use ./images/Seiji.png>
-Package pdftex.def Info: ./images/Seiji.png used on input line 76.
-(pdftex.def)             Requested size: 291.33574pt x 227.64839pt.
-
-
-LaTeX Warning: Float too large for page by 135.2919pt on input line 77.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 79.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language append on input line 79.
+(babel)             in language append on input line 93.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language append on input line 79.
-[2]
+(babel)             in language append on input line 93.
+ [2]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 95.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language append on input line 79.
+(babel)             in language append on input line 95.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language append on input line 79.
- [3 <./images/Bia.png> <./images/Scholl.png> <./images/Seiji.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 79.
+(babel)             in language append on input line 95.
+ [3]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language append on input line 95.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language append on input line 95.
+ [4 <./images/Bia.png> <./images/Scholl.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 95.
 
 (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 79.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 79.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 95.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 95.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 79.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 95.
  ) 
 Here is how much of TeX's memory you used:
- 7385 strings out of 493013
- 101817 string characters out of 6139317
+ 7381 strings out of 493013
+ 101723 string characters out of 6139317
  199790 words of memory out of 5000000
- 10805 multiletter control sequences out of 15000+600000
+ 10801 multiletter control sequences out of 15000+600000
  30190 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,6n,26p,222b,345s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,6n,26p,222b,370s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/lana/.texlive/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk>{/
 usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc} </usr/share/texmf-dist/fonts/
 pk/ljfour/public/cm/dpi600/cmr8.pk> </usr/share/texmf-dist/fonts/pk/ljfour/publ
@@ -777,10 +778,10 @@ ic/cm/dpi600/cmr12.pk> </home/lana/.texlive/texmf-var/fonts/pk/ljfour/public/cm
 re/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-dist/fonts/ty
 pe1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.p
 fb>
-Output written on report.pdf (3 pages, 171143 bytes).
+Output written on report.pdf (4 pages, 135789 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
- 12 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 61 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
