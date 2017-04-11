@@ -2,6 +2,12 @@ import matplotlib.pyplot as plt
 import os
 import sys
 
+####################################################################################
+# Esse programa lê um arquivo de texto e a partir dele, plota os dados             #
+# em um gráfico de "deslocamento x tempo". Cada linha desse arquivo é dado         #
+# na forma "x,y\n", onde x é o tempo (em segundos) e y é o deslocamento (em metros)#
+####################################################################################
+
 # cria a figura e insere o gráfico dentro
 figure = plt.figure()
 plot = figure.add_subplot(111)
