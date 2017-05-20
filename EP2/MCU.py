@@ -56,15 +56,18 @@ def euler_richardson(teta_0, w_0, N, delta_t):
         w_array.append(w)
         teta_array.append(teta)
         t_array.append(t)
-
-    plt.plot(t_array, teta_array, 'y-.')
+   # Descomentar para plotar a variação do ângulo e plotar a velocidade. 
+   # plt.plot(t_array, teta_array, 'y-.')
    # plt.plot(t_array, w_array)
 
 def main():
     # Velocidade angular inicial coletada do experimento.
     # Argumentos (<ângulo inicial(rad)>, <velocidade angular inicial(rad/s)>, <número de iterações>, <intervalo de tempo(s)>)
+
     euler_cromer(0, -8.9942, 200, 0.1)
     euler_richardson(0, -8.9942, 200, 0.1)
+
+    # Descomentar para visualizar os gráficos.
     plt.show()
 
 main()
