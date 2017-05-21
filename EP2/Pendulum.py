@@ -170,7 +170,7 @@ def main():
     # Só pêndulo
     #fig, ax = plt.subplots()
     #ax.axis('scaled')
-    #ax.axis([0, 5, 0, 5])
+    #ax.axis([0, .5, 0, .5])
     #ani_cromer_p = animate_pendulum(cromer, fig, ax, 'b')
     #ani_richard_p = animate_pendulum(richard, fig, ax, 'r')
     
