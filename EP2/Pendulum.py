@@ -68,7 +68,7 @@ def euler_richardson(theta_0, w_0, g, N, delta_t):
 
 # Retorna (x, y) do pêndulo em um instante dado um vetor de tempo e um de
 # ângulos. Interpola o ângulo linearmente
-def getpos(time, t_array, theta_array, ceil = 1, pend_len = 0.38, pend_x = 2.5):
+def getpos(time, t_array, theta_array, ceil = 1, pend_len = 0.38, pend_x = .5):
     x = 0
     y = 0
     k = -1
