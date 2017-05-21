@@ -84,26 +84,54 @@ def getpos(time, t_array, theta_array, ceil = 5, pend_len = 3, pend_x = 2.5):
     y = ceil - pend_len*th.cos(theta)
     rx = pend_x
     ry = ceil
-    return  rx, ry, x, y
+    return  rx, ry, x, y, theta
 
-def update(time, line, pendulum, ax, t_array, theta_array):
-    rx, ry, x, y = getpos(time, t_array, theta_array)
+def update_pendulum(time, line, pendulum, ax, t_array, theta_array):
+    rx, ry, x, y, theta = getpos(time, t_array, theta_array)
     pendulum.set_data([x], [y])
     line.set_data([rx, x], [ry, y])
-    plt.xlabel(str(time))
-    return pendulum,
+    ax.set_ylabel(str(round(time, 2)))
 
-def animate(time_angle, fig, ax, col = 'b', fps = 60):
+def animate_pendulum(time_angle, fig, ax, col = 'b', fps = 60):
     t_array, theta_array = time_angle
     frame_qty = th.floor(fps*t_array[-1])
     frame_time = [i*t_array[-1]/frame_qty for i in range(frame_qty)]
 
     line, = ax.plot([0], [0], '-k')
     pendulum, = ax.plot([0], [0], 'o' + col)
-    ax.axis('scaled')
-    ax.axis([0, 5, 0, 5])
 
-    ani = anim.FuncAnimation(fig, update, frame_time, fargs = (line, pendulum,
+    ani = anim.FuncAnimation(fig, update_pendulum, frame_time, fargs = (line, pendulum,
+        ax, t_array, theta_array),
+            interval = th.floor(1000.0/fps))
+    return ani
+
+def update_graph(time, line, ax, t_array, theta_array):
+    rx, ry, x, y, theta = getpos(time, t_array, theta_array)
+    t_new = []
+    theta_new = []
+
+    for i in range(len(t_array)):
+        if t_array[i] > time:
+            break
+        t_new.append(t_array[i])
+        theta_new.append(theta_array[i])
+
+    t_new.append(time)
+    theta_new.append(theta)
+
+    ax.relim()
+    ax.autoscale_view()
+
+    line.set_data(t_new, theta_new)
+
+def animate_graph(time_angle, fig, ax, col = 'b', fps = 60):
+    t_array, theta_array = time_angle
+    frame_qty = th.floor(fps*t_array[-1])
+    frame_time = [i*t_array[-1]/frame_qty for i in range(frame_qty)]
+
+    line, = ax.plot([0], [0], '-' + col)
+
+    ani = anim.FuncAnimation(fig, update_graph, frame_time, fargs = (line,
         ax, t_array, theta_array),
             interval = th.floor(1000.0/fps))
     return ani
@@ -126,12 +154,26 @@ def main():
     cromer = euler_cromer(0.4346, 0, 10, 200, 0.1)
     richard = euler_richardson(0.4346, 0, 10, 200, 0.1)
 
-    # Descomentar para visualizar os gráficos.
-    #plt.show()
-
     # Descomentar para visualizar a animação.
-    fig, ax = plt.subplots()
-    ani_cromer = animate(cromer, fig, ax, 'b')
-    ani_richard = animate(richard, fig, ax, 'r')
+
+    # Pêndulo e gráfico
+    fig = plt.figure()
+    ax = plt.subplot(211)
+    ax.axis('scaled')
+    ax.axis([0, 5, 0, 5])
+    ani_cromer_p = animate_pendulum(cromer, fig, ax, 'b')
+    ani_richard_p = animate_pendulum(richard, fig, ax, 'r')
+    ax2 = plt.subplot(212)
+    ani_cromer_g = animate_graph(cromer, fig, ax2, 'b')
+    ani_richard_g = animate_graph(richard, fig, ax2, 'r')
+    
+    # Só pêndulo
+    #fig, ax = plt.subplots()
+    #ax.axis('scaled')
+    #ax.axis([0, 5, 0, 5])
+    #ani_cromer_p = animate_pendulum(cromer, fig, ax, 'b')
+    #ani_richard_p = animate_pendulum(richard, fig, ax, 'r')
+    
+    # Descomentar para visualizar os gráficos ou animações.
     plt.show()
 main()
