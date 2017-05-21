@@ -26,9 +26,12 @@ def euler_cromer(theta_0, w_0, g, N, delta_t):
         t_array.append(t)
 
     # Descomentar para plotar os dados aceleração, velocidade e posição, respectivamente.
-    #plt.plot(t_array, dw_dt_array)
-    #plt.plot(t_array, w_array)
-    #plt.plot(t_array, theta_array)
+    #fig, ax = plt.subplots()
+    #ax.set_title('Euler Cromer')
+    #ax.plot(t_array, dw_dt_array, label='Acceleration(m/s²)')
+    #ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
+    #ax.plot(t_array, theta_array, label='Angular Variation(rad)')
+    #ax.legend(loc='lower right', prop={'size': 6})
     return t_array, theta_array
 
 def euler_richardson(theta_0, w_0, g, N, delta_t):
@@ -59,9 +62,13 @@ def euler_richardson(theta_0, w_0, g, N, delta_t):
         t_array.append(t)
 
     # Descomentar para plotar os dados aceleração, velocidade e posição, respectivamente.
-    #plt.plot(t_array, dw_dt_array)
-    #plt.plot(t_array, w_array)
-    #plt.plot(t_array, theta_array)
+    #fig, ax = plt.subplots()
+    #ax.set_title('Euler Richardson')
+    #ax.plot(t_array, dw_dt_array, label='Acceleration(m/s²)')
+    #ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
+    #ax.plot(t_array, theta_array, label='Angular Variation(rad)')
+    #ax.legend(loc='lower right', prop={'size': 6})
+    
     return t_array, theta_array
 
 # Animação do pêndulo
@@ -151,8 +158,8 @@ def main():
     # <intervalo de tempo(s)>
     #)
 
-    cromer = euler_cromer(0.4346, 0, 10, 200, 0.1)
-    richard = euler_richardson(0.4346, 0, 10, 200, 0.1)
+    cromer = euler_cromer(0.4346, 0, 10, 1000, 0.01)
+    richard = euler_richardson(0.4346, 0, 10, 1000, 0.01)
 
     # Descomentar para visualizar a animação.
 
