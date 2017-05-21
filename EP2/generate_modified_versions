@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script generates readable files (commas to periods and removes the header)
+# for our programs. They are named <filename>.mod
+
+for file in $(find | grep "\.csv$")
+do
+	cat $file | grep -v time | tr ',' '.' > $file.mod
+done

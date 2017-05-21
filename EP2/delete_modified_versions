@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Deletes all files with extension .mod in this directory
+
+rm -f $(find | grep "\.mod")
