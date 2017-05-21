@@ -11,25 +11,25 @@ def euler_cromer(theta_0, w_0, N, delta_t):
 
     w_array = []
     theta_array = []
+    theta_cont = []
     t_array = []
 
     for i in range(N):
         dw_dt = 0
         w = w + dw_dt * delta_t
         theta = theta + w * delta_t
-        if (theta <= -2*th.pi):
-            theta = 0
         t  = t + delta_t
 
         w_array.append(w)
-        theta_array.append(theta)
+        theta_array.append(theta % th.copysign(2*th.pi, theta))
+        theta_cont.append(theta)
         t_array.append(t)
 
     # Descomentar para plotar a o ângulo e plotar a velocidade.
     #plt.plot(t_array, theta_array)
     #plt.plot(t_array, w_array)
 
-    return t_array, theta_array
+    return t_array, theta_cont
 
 def euler_richardson(theta_0, w_0, N, delta_t):
 
@@ -40,6 +40,7 @@ def euler_richardson(theta_0, w_0, N, delta_t):
 
     w_array = []
     theta_array = []
+    theta_cont = []
     t_array = []
 
     for i in range(N):
@@ -52,18 +53,18 @@ def euler_richardson(theta_0, w_0, N, delta_t):
 
         w = w + dw_dt_mid * delta_t
         theta = theta + w_mid * delta_t
-        if (theta < -2*th.pi):
-            theta = 0
+
         t  = t + delta_t
 
         w_array.append(w)
-        theta_array.append(theta)
+        theta_array.append(theta % th.copysign(2*th.pi, theta))
+        theta_cont.append(theta)
         t_array.append(t)
     # Descomentar para plotar a variação do ângulo e plotar a velocidade.
     #plt.plot(t_array, theta_array, 'y-.')
     #plt.plot(t_array, w_array)
 
-    return t_array, theta_array
+    return t_array, theta_cont
 
 # Animação do ventilador
 
@@ -105,8 +106,7 @@ def animate(time_angle, fig, ax, col = 'b', fps = 60):
     ax.axis([-5, 5, -5, 5])
 
     ani = anim.FuncAnimation(fig, update, frame_time, fargs = (line, pendulum,
-        ax, t_array, theta_array),
-            interval = th.floor(1000.0/fps))
+        ax, t_array, theta_array), interval = th.floor(1000.0/fps))
     return ani
 
 def main():
