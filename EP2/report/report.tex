@@ -10,9 +10,13 @@
 \usepackage{graphicx}
 \usepackage[colorlinks=true, linkcolor=red]{hyperref}
 \renewcommand{\rmdefault}{ptm}
+\graphicspath{{/home/lana/Documents/Bea/MAC0209/EP2/Graphics_Simulation/}}
+
 
 \title{Relatório EP2}
-\author{Beatriz F. Marouelli, Bruno B. Scholl, \\João H. Luciano, Leonardo Lana Violin Oliveira, \\ Lucas B. Yau, Victor H. Seiji}
+\author{Beatriz F. Marouelli, Bruno B. Scholl, \\
+        João H. Luciano, Leonardo Lana Violin Oliveira, \\ 
+        Lucas B. Yau, Victor H. Seiji}
 \date{22 de Maio de 2017}
 
 \begin{document}
@@ -21,26 +25,43 @@
 \section*{Introdução}
 Escolhemos os movimentos de pêndulo e movimento circular uniforme. 
 
-O pêndulo simples consiste em uma massa puntiforme (um celular, neste experimento) presa a um fio esticado e fazendo um movimento oscilatório em torno de um ponto fixo, o ponto central.
+O pêndulo simples consiste em uma massa puntiforme (um celular, 
+neste experimento) presa a um fio esticado e fazendo um movimento 
+oscilatório em torno de um ponto fixo, o ponto central.
 
-O movimento circular uniforme consiste de um corpo (um celular, neste experimento) realizando um movimento no qual a trajetória é uma circunfêrencia e a velocidade é constante.
+O movimento circular uniforme consiste de um corpo (um celular, 
+neste experimento) realizando um movimento no qual a trajetória 
+é uma circunfêrencia e a velocidade é constante.
 
 \section*{Protocolos de aquisição}
 
 \subsection*{Pêndulo}
-Amarramos o celular com barbante, e destes barbantes fizemos dois eixos para fixar o celular no cano de forma mais estável, desta forma o fio que medimos é a reta entre o cano e o celular. Deixamos o pêndulo encostado na altura do peito do Leonardo por 5 segundos para estabilização e paramos o pêndulo após dez balançadas, paramos o pêndulo no eixo central por 5 segundos.
+Amarramos o celular com barbante, e destes barbantes fizemos dois 
+eixos para fixar o celular no cano de forma mais estável, desta 
+forma o fio que medimos é a reta entre o cano e o celular. Deixamos 
+o pêndulo encostado na altura do peito do Leonardo por 5 segundos 
+para estabilização e paramos o pêndulo após dez balançadas, paramos 
+o pêndulo no eixo central por 5 segundos.
 
 \subsection*{Movimento circular uniforme}
-Colocamos um celular em cada pá do ventilador de teto para balancear o peso. Esperamos 5 segundos, para termos um parâmetro de estabilização. Depois temos 10 segundos de aceleração do ventilador, e 5 segundos de movimento circular uniforme, depois disso paramos o celular de novo para termos outra estabilização.
+Colocamos um celular em cada pá do ventilador de teto para balancear 
+o peso. Esperamos 5 segundos, para termos um parâmetro de estabilização. 
+Depois temos 10 segundos de aceleração do ventilador, e 5 segundos de 
+movimento circular uniforme, depois disso paramos o celular de novo 
+para termos outra estabilização.
 
 \section*{Métodos}
 Para as simulações usamos os algoritmos de Euler-Cromer e Euler-Richardson.
 
 \subsection*{Euler-Cromer}
-Este algoritmo usa a velocidade da próxima iteração para calcular a posição da iteração atual, desta forma criando uma precisão maior do que o algoritmo de Euler simples.
+Este algoritmo usa a velocidade da próxima iteração para calcular a 
+posição da iteração atual, desta forma criando uma precisão maior do 
+que o algoritmo de Euler simples.
 
 \subsection*{Euler-Richardson}
-Este algoritmo usa aceleração, velocidade e espaço do meio da iteração para calcular os parâmetros da próxima, desta forma criando uma precisão ainda maior que a de Euler-Cromer para movimentos oscilatórios.
+Este algoritmo usa aceleração, velocidade e espaço do meio da iteração
+para calcular os parâmetros da próxima, desta forma criando uma precisão
+ainda maior que a de Euler-Cromer para movimentos oscilatórios.
 
 \section*{Verificação do programa}
 \subsection*{Pêndulo}
@@ -74,7 +95,7 @@ $$dt=0.1s\ \text{e}\ 200\ \text{iterações}$$
 \subsection*{Pêndulo}
 Os gráficos mostram a oscilação do movimento, e sua repetição em intervalos, 
 mostrando as características senóides da velocidade e aceleração. Ambos os 
-]algoritmos produziram gráficos idênticos.
+algoritmos produziram gráficos idênticos.
 
 \subsection*{Movimento circular uniforme}
 
