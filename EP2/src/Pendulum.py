@@ -8,7 +8,7 @@ import numpy as np
 def fixer (file) :
 
     #------------------------------------------------------------------------------------------------------
-    # Recebe o nome de um arquivo .csv e 
+    # Recebe o nome de um arquivo .csv e
     # retorna uma lista de listas com os dados prontos para plotar
     #------------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ def fixer (file) :
     # Abre o arquivo e ignora newlines, guardando o conteúdo em uma lista de listas
     with open (file) as f:
         content = f.read ().splitlines ()
-        content_aux = []    
+        content_aux = []
 
     for i in content:
 
@@ -38,7 +38,7 @@ def fixer (file) :
 
     return content
 
-def plotter (file_name): 
+def plotter (file_name):
 
     #---------------------------------------------------------------------------------------------
     # Plota os dados do arquivo .csv
@@ -55,9 +55,9 @@ def plotter (file_name):
     plot.set_xlabel ("Tempo")
 
     red = mpatch.Patch (color='red', label='Posição')
-j    blue = mpatch.Patch (color='blue', label='Aceleração')
+    blue = mpatch.Patch (color='blue', label='Aceleração')
     green = mpatch.Patch (color='green', label='Velocidade')
-    
+
     plt.legend (handles=[red, blue, green], bbox_to_anchor=(1, 1), bbox_transform=plt.gcf ().transFigure)
 
     t = []
@@ -79,7 +79,6 @@ j    blue = mpatch.Patch (color='blue', label='Aceleração')
 
 
 def main_GUI ():
-    
     #-----------------------------------------------------------------------------------------------------
     # Interface gráfica para as plotagens. A entrada é o nome de um arquivo .csv
     #-----------------------------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ def main_GUI ():
 
     window.mainloop ()
 
-main_GUI ()
+# main_GUI ()
 
 def euler_cromer(theta_0, w_0, g, N, delta_t, air_res):
 
@@ -112,7 +111,7 @@ def euler_cromer(theta_0, w_0, g, N, delta_t, air_res):
     t_array = []
 
     for i in range(N):
-        dw_dt = -g * th.sin(theta) - air_res * w 
+        dw_dt = -g * th.sin(theta) - air_res * w
         w = w + dw_dt * delta_t
         theta = theta + w * delta_t
         t  = t + delta_t
@@ -125,10 +124,11 @@ def euler_cromer(theta_0, w_0, g, N, delta_t, air_res):
     # Descomentar para plotar os dados aceleração, velocidade e posição, respectivamente.
     fig, ax = plt.subplots()
     ax.set_title('Euler Cromer')
-    ax.plot(t_array, dw_dt_array, label='Acceleration(m/s²)')
+    ax.plot(t_array, dw_dt_array, label='Angular Acceleration(rad/s²)')
     ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
     ax.plot(t_array, theta_array, label='Angular Variation(rad)')
     ax.legend(loc='lower right', prop={'size': 6})
+
     return t_array, theta_array
 
 def euler_richardson(theta_0, w_0, g, N, delta_t, air_res):
@@ -159,13 +159,13 @@ def euler_richardson(theta_0, w_0, g, N, delta_t, air_res):
         t_array.append(t)
 
     # Descomentar para plotar os dados aceleração, velocidade e posição, respectivamente.
-    #fig, ax = plt.subplots()
-    #ax.set_title('Euler Richardson')
-    #ax.plot(t_array, dw_dt_array, label='Acceleration(m/s²)')
-    #ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
-    #ax.plot(t_array, theta_array, label='Angular Variation(rad)')
-    #ax.legend(loc='lower right', prop={'size': 6})
-    
+    fig, ax = plt.subplots()
+    ax.set_title('Euler Richardson')
+    ax.plot(t_array, dw_dt_array, label='Angular Acceleration(rad/s²)')
+    ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
+    ax.plot(t_array, theta_array, label='Angular Variation(rad)')
+    ax.legend(loc='lower right', prop={'size': 6})
+
     return t_array, theta_array
 
 # Animação do pêndulo
@@ -271,14 +271,14 @@ def main():
     ax2 = plt.subplot(212)
     ani_cromer_g = animate_graph(cromer, fig, ax2, 'b')
     ani_richard_g = animate_graph(richard, fig, ax2, 'r')
-    
+
     # Só pêndulo
     #fig, ax = plt.subplots()
     #ax.axis('scaled')
     #ax.axis([0, .5, 0, .5])
     #ani_cromer_p = animate_pendulum(cromer, fig, ax, 'b')
     #ani_richard_p = animate_pendulum(richard, fig, ax, 'r')
-    
+
     # Descomentar para visualizar os gráficos ou animações.
     plt.show()
 main()

@@ -30,7 +30,7 @@ def euler_cromer(theta_0, w_0, N, delta_t):
     # Descomentar para plotar a o ângulo e plotar a velocidade.
     fig, ax = plt.subplots()
     ax.set_title('Euler Cromer')
-    ax.plot(t_array, dw_dt_array, label='Acceleration(m/s²)')
+    ax.plot(t_array, dw_dt_array, label='Angular Acceleration(rad/s²)')
     ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
     ax.plot(t_array, theta_array, label='Angular Variation(rad)')
     ax.legend(loc='lower right', prop={'size': 6})
@@ -71,7 +71,7 @@ def euler_richardson(theta_0, w_0, N, delta_t):
     # Descomentar para plotar a variação do ângulo e plotar a velocidade.
     fig, ax = plt.subplots()
     ax.set_title('Euler Richardson')
-    ax.plot(t_array, dw_dt_array, label='Acceleration(m/s²)')
+    ax.plot(t_array, dw_dt_array, label='Angular Acceleration(rad/s²)')
     ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
     ax.plot(t_array, theta_array, label='Angular Variation(rad)')
     ax.legend(loc='lower right', prop={'size': 6})
