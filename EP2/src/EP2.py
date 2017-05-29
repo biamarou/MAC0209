@@ -323,6 +323,83 @@ def euler_cromer_pendulum(theta_0, w_0, g, N, delta_t, air_res, radius=.53):
 
 
 
+def euler_richardson_pendulum_0at(theta_0, w_0, g, N, delta_t, air_res = 0, radius=.53):
+
+    w = w_0
+    theta = theta_0
+    t = 0
+
+    w_array = []
+    dw_dt_array = []
+    theta_array = []
+    t_array = []
+
+    for i in range(N):
+
+        linacc = -g * th.sin(theta) - air_res * w
+        dw_dt = linacc/radius
+        w_mid = w + dw_dt * (delta_t/2)
+        theta_mid = theta + w * (delta_t/2)
+        linacc_2 = -g * th.sin(theta_mid) - air_res * w_mid
+        dw_dt_mid = linacc_2/radius
+        w = w + dw_dt_mid * delta_t
+        theta = theta + w_mid * delta_t
+        t = t + delta_t
+
+        w_array.append(w)
+        dw_dt_array.append(dw_dt)
+        theta_array.append(theta)
+        t_array.append(t)
+
+    # Plotar os dados aceleração, velocidade e posição, respectivamente.
+    fig, ax = plt.subplots(figsize=(18, 8))
+    ax.set_title('Euler Richardson - Pêndulo')
+    ax.plot(t_array, dw_dt_array, label='Angular Acceleration(rad/s²)')
+    ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
+    ax.plot(t_array, theta_array, label='Angular Variation(rad)')
+    ax.legend(loc='lower right', prop={'size': 6})
+    
+    plt.savefig ("pendulo_richardson_simulado_0at.png")
+    plt.close (fig)
+
+    return t_array, theta_array
+
+def euler_cromer_pendulum_0at(theta_0, w_0, g, N, delta_t, air_res = 0, radius=.53):
+
+    w = w_0
+    theta = theta_0
+    t = 0
+
+    w_array = []
+    dw_dt_array = []
+    theta_array = []
+    t_array = []
+
+    for i in range(N):
+        linacc = -g * th.sin(theta) - air_res * w 
+        dw_dt = linacc / radius
+        w = w + dw_dt * delta_t
+        theta = theta + w * delta_t
+        t = t + delta_t
+
+        w_array.append(w)
+        dw_dt_array.append(dw_dt)
+        theta_array.append(theta)
+        t_array.append(t)
+
+    # Plotar os dados aceleração, velocidade e posição, respectivamente.
+    fig, ax = plt.subplots(figsize=(18, 8))
+    ax.set_title('Euler Cromer - Pêndulo')
+    ax.plot(t_array, dw_dt_array, label='Angular Acceleration(rad/s²)')
+    ax.plot(t_array, w_array, label='Angular Velocity(rad/s)')
+    ax.plot(t_array, theta_array, label='Angular Variation(rad)')
+    ax.legend(loc='lower right', prop={'size': 6})
+
+    plt.savefig ("pendulo_cromer_simulado_0at.png")
+    plt.close (fig)
+
+    return t_array, theta_array
+
 def euler_richardson_pendulum(theta_0, w_0, g, N, delta_t, air_res, radius=.53):
 
     w = w_0
@@ -363,8 +440,6 @@ def euler_richardson_pendulum(theta_0, w_0, g, N, delta_t, air_res, radius=.53):
     plt.close (fig)
 
     return t_array, theta_array
-
-
 
 
 def euler_cromer_MCU (theta_0, w_0, N, delta_t):
@@ -461,13 +536,13 @@ def plotter_all_simulation ():
     # OBS: os dados de retorno das funções são ignorados
     #-----------------------------------------------------------------------------------------------------
 
-    trash1 = euler_cromer_pendulum (0.4, 0, 10, 1500, 0.01, 0)
-    trash2 = euler_richardson_pendulum (0.4, 0, 10, 1500, 0.01, 0)
-    trash3 = euler_cromer_MCU (0, -9, 350, 0.1)
-    trash4 = euler_richardson_MCU (0, -9, 350, 0.1)
+    euler_cromer_pendulum (0.4, 0, 10, 1500, 0.01, .04)
+    euler_richardson_pendulum (0.4, 0, 10, 1500, 0.01, .04)
+    euler_cromer_MCU (0, -9, 350, 0.1)
+    euler_richardson_MCU (0, -9, 350, 0.1)
 
-
-
+    euler_cromer_pendulum_0at (0.4, 0, 10, 1500, 0.01)
+    euler_richardson_pendulum_0at (0.4, 0, 10, 1500, 0.01)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
