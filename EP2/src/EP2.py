@@ -103,8 +103,29 @@ def plotter_pendulum (file_name, radius = .53):
     plt.savefig (file_name.replace (".csv", "_plot_experiment.png"))
     plt.close (figure)
 
+def plotter_pendulum_nf (file_name, plot1, plot2, plot3, color, radius = .53):
+    #---------------------------------------------------------------------------------------------
+    # Plota os dados de um arquivo pendulox.csv sem criar figuras
+    #---------------------------------------------------------------------------------------------
 
+    # Repara os arquivos, para facilitar a manipulação
+    content = fixer (file_name, 'p')
 
+    # Processamento dos dados do experimento
+    t = []
+    theta_e = []
+    a_e = []
+    v_e = []
+
+    for data in content:
+        t.append (data[0])
+        theta_e.append (data[3])
+        a_e.append (data[5])
+        v_e.append (data[7])
+
+    plot1.plot (t, theta_e, color)
+    plot2.plot (t, v_e, color)
+    plot3.plot (t, a_e, color)
 
 def plotter_circular (file_name, radius = .48): 
 
@@ -160,6 +181,36 @@ def plotter_circular (file_name, radius = .48):
     plt.savefig (file_name.replace (".csv", "_plot_experiment.png"))
     plt.close (figure)
 
+def plotter_circular_nf (file_name, plot1, plot2, plot3, color, radius = .48): 
+
+    #---------------------------------------------------------------------------------------------
+    # Plota os dados de um arquivo circularx.csv
+    #---------------------------------------------------------------------------------------------
+
+    # Repara os arquivos, para facilitar a manipulação
+    content = fixer (file_name, 'c')
+
+    # Processamento dos dados do experimento
+    t = []
+    theta_e = []
+    a_e = []
+    v_e = []
+
+    last_time = 0
+    curr_theta = 0
+
+    for data in content:
+        curr_theta += data[6] * (data[0] - last_time)
+        last_time = data[0]
+        t.append (data[0])
+        theta_e.append (curr_theta % th.copysign(2*th.pi, curr_theta))
+        a_e.append (data[1] / radius)
+        v_e.append (data[6])
+
+    plot1.plot (t, theta_e, color)
+    plot2.plot (t, v_e, color)
+    plot3.plot (t, a_e, color)
+
 def plotter_all_experiment ():
 
     #-----------------------------------------------------------------------------------------------------
@@ -178,8 +229,54 @@ def plotter_all_experiment ():
     plotter_circular ("circular4.csv")
     plotter_circular ("circular5.csv")
 
+def plotter_all_one_fig ():
 
+    figure = plt.figure (figsize=(20, 8))
+    plot1 = figure.add_subplot (131)
+    plot2 = figure.add_subplot (132)
+    plot3 = figure.add_subplot (133)
 
+    figure.suptitle ("Posição e Velocidade e Aceleração x Tempo - Pêndulo")
+
+    plot1.set_ylabel ("Posição")
+    plot1.set_xlabel ("Tempo")
+    plot2.set_ylabel ("Velocidade")
+    plot2.set_xlabel ("Tempo")
+    plot3.set_ylabel ("Aceleração")
+    plot3.set_xlabel ("Tempo")
+
+    plotter_pendulum_nf ("pendulo1.csv", plot1, plot2, plot3, 'b')
+    plotter_pendulum_nf ("pendulo2.csv", plot1, plot2, plot3, 'g')
+    plotter_pendulum_nf ("pendulo3.csv", plot1, plot2, plot3, 'r')
+    plotter_pendulum_nf ("pendulo4.csv", plot1, plot2, plot3, 'c')
+    plotter_pendulum_nf ("pendulo5.csv", plot1, plot2, plot3, 'k')
+
+    plt.savefig ("pendulo_all_together.png")
+    plt.close (figure)
+
+    # Cria subplots para cada grandeza dos dados, a legenda e plota dos dados
+    figure = plt.figure (figsize=(20, 8))
+    plot1 = figure.add_subplot (131)
+    plot2 = figure.add_subplot (132)
+    plot3 = figure.add_subplot (133)
+
+    figure.suptitle ("Posição e Velocidade e Aceleração x Tempo - MCU")
+
+    plot1.set_ylabel ("Posição")
+    plot1.set_xlabel ("Tempo")
+    plot2.set_ylabel ("Velocidade")
+    plot2.set_xlabel ("Tempo")
+    plot3.set_ylabel ("Aceleração")
+    plot3.set_xlabel ("Tempo")
+
+    plotter_circular_nf ("circular1.csv", plot1, plot2, plot3, 'b')
+    plotter_circular_nf ("circular2.csv", plot1, plot2, plot3, 'g')
+    plotter_circular_nf ("circular3.csv", plot1, plot2, plot3, 'r')
+    plotter_circular_nf ("circular4.csv", plot1, plot2, plot3, 'c')
+    plotter_circular_nf ("circular5.csv", plot1, plot2, plot3, 'k')
+
+    plt.savefig ("circular_all_together.png")
+    plt.close (figure)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -783,6 +880,7 @@ def main_GUI ():
     button1 = Button (window, text="Plotar os gráficos dos experimentos realizados", command= plotter_all_experiment) 
     button2 = Button (window, text="Plotar os gráficos das simulações", command= plotter_all_simulation) 
     button3 = Button (window, text="Plotar os gráficos dos experimentos realizados sobrepostos com a simulação", command= plotter_all_overlap)
+    button6 = Button (window, text="Plotar os gráficos dos 5 experimentos sobrepostos", command=plotter_all_one_fig)
     button4 = Button (window, text="Simular o pêndulo com animações", command= pendulum_animator) 
     button5 = Button (window, text="Simular o MCU com animações", command= circular_animator) 
     
@@ -791,6 +889,7 @@ def main_GUI ():
     button1.pack ()
     button2.pack ()
     button3.pack ()
+    button6.pack ()
     button4.pack ()
     button5.pack ()
 
