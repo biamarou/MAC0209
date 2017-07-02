@@ -34,7 +34,7 @@ public class Freeway implements Drawable{
         velDist.resizeLattice(maximumVelocity + 1, numberOfCars);
         //velDist.setPreferredMinMaxX(0, maximumVelocity);
         //velDist.setPreferredMinMaxY(0, numberOfCars);
-        gapDist.resizeLattice(roadLength, numberOfCars + 1);
+        gapDist.resizeLattice(roadLength - numberOfCars, numberOfCars + 1);
         //gapDist.setPreferredMinMaxX(0, roadLength);
         //gapDist.setPreferredMinMaxY(0, numberOfCars + 1);
 
@@ -97,7 +97,7 @@ public class Freeway implements Drawable{
         steps++;
         computeSpaceTimeDiagram();
         computeHistogram(velDist, getVelocitiesDistribution(), numberOfCars);
-        //computeHistogram(gapDist, getGapDistribution(), numberOfCars + 1);
+        computeHistogram(gapDist, getGapDistribution(), numberOfCars + 1);
     }
 
     public void computeSpaceTimeDiagram() {
@@ -132,21 +132,34 @@ public class Freeway implements Drawable{
     }
 
     public int[] getGapDistribution() {
-        int[] distribution = new int[roadLength];
+        int[] distribution = new int[roadLength - numberOfCars];
         int[] carLocations = new int[numberOfCars];
 
-        for (int i = 0; i < roadLength; i++)
+        for (int i = 0; i < roadLength - numberOfCars; i++)
             distribution[i] = 0;
 
         for (int i = 0; i < numberOfCars; i++)
             carLocations[i] = x[i];
 
+        /*
+        System.out.println("..:");
+        for (int i : carLocations)
+            System.out.print(i + " ");
+        System.out.println();
+        */
+
         Arrays.sort(carLocations);
 
-        distribution[x[0]] ++;
+        /*
+        for (int i : carLocations)
+            System.out.print(i + " ");
+        System.out.println();
+        */
+
+        distribution[carLocations[0]] ++;
         for (int i = 1; i < numberOfCars; i++)
-            distribution[x[i] - x[i - 1] - 1] ++;
-        distribution[roadLength - x[numberOfCars - 1] - 1] ++;
+            distribution[carLocations[i] - carLocations[i - 1] - 1] ++;
+        distribution[roadLength - carLocations[numberOfCars - 1] - 1] ++;
 
         return distribution;
     }
