@@ -42,7 +42,7 @@ public class FreewayApp extends AbstractSimulation {
 
     public static void main (String [] args) {
         SimulationControl control =
-        SimulationControl.createApp (new FreewayApp());
+        SimulationControl.createApp (new FreewayApp2Lane());
         control.addButton("resetAverages", "resetAverages");
     }
 }
