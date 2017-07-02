@@ -1,9 +1,9 @@
 SRCDIR 	  := src
-CLASSDIR  := class
+OBJDIR    := obj
 PWD       := $(shell pwd)
 
 SRC       := $(wildcard $(SRCDIR)/*.java)
-CLASS     := $(patsubst $(SRCDIR)/%.java, $(CLASSDIR)/%.class, $(SRC))
+CLASS     := $(patsubst $(SRCDIR)/%.java, $(OBJDIR)/%.class, $(SRC))
 
 CLASSD    := $(wildcard $(PWD)/*.class)
 SRCD      := $(wildcard $(PWD)/*.java)
@@ -11,21 +11,21 @@ SRCD      := $(wildcard $(PWD)/*.java)
 MYCLASSPATH := $(CLASSPATH):./lib/osp.jar
 JC        := javac 
 MV		  := mv
-JCFLAGS   := -d $(CLASSDIR) -cp $(MYCLASSPATH)
+JCFLAGS   := -d $(OBJDIR) -cp $(MYCLASSPATH)
 
 .PHONY: compile 
 compile: $(CLASS)
 
-$(CLASS): $(SRC) | $(CLASSDIR)
+$(CLASS): $(SRC) | $(OBJDIR)
 	$(JC) $(JCFLAGS) $^
 
 .PHONY: init
-init: $(SRCDIR) $(CLASSDIR)
+init: $(SRCDIR) $(OBJDIR)
 
-$(SRCDIR) $(CLASSDIR):
+$(SRCDIR) $(OBJDIR):
 	mkdir -p $@
 
 .PHONY: organize
 organize: init
-		-$(MV) $(CLASSD) $(CLASSDIR)
+		-$(MV) $(CLASSD) $(OBJDIR)
 		-$(MV) $(SRCD) $(SRCDIR)
