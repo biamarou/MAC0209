@@ -1,4 +1,3 @@
-package org.opensourcephysics.sip.ch14.traffic;
 import org.opensourcephysics.controls.*;
 import org.opensourcephysics.frames.*;
 
@@ -17,7 +16,7 @@ public class FreewayApp extends AbstractSimulation {
         freeway.roadLength = control.getInt("Road length");
         freeway.p = control.getDouble("Slow down probability");
         freeway.maximumVelocity = control.getInt("Maximum velocity");
-        display.setPreferredMinMax(0, freeway.roadLength, −3, 4);
+        display.setPreferredMinMax(0, freeway.roadLength, -3, 4);
         freeway.initialize(spaceTime);
     }
 
@@ -31,7 +30,7 @@ public class FreewayApp extends AbstractSimulation {
         control.setValue("Slow down probability" , 0.5);
         control.setValue("Maximum velocity" , 2 );
         control.setValue("Steps between plots" , 1);
-        enable StepsPerDisplay(true);
+        enableStepsPerDisplay(true);
     }
 
     public void resetAverages () {

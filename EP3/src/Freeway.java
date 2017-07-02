@@ -1,4 +1,3 @@
-package org.opensourcephysics.sip.ch14.traffic;
 import java.awt.Graphics;
 import org.opensourcephysics.display.*;
 import org.opensourcephysics.frames.*;
@@ -17,7 +16,7 @@ public class Freeway implements Drawable{
 
     //number of iterations before scrolling space-time diagram
 
-    public void initialize(LatticeFramespace Time){
+    public void initialize(LatticeFrame spaceTime){
         this.spaceTime = spaceTime;
         x = new int[numberOfCars];
         xtemp = new int[numberOfCars]; //used to allow parallel updating
@@ -35,7 +34,7 @@ public class Freeway implements Drawable{
         x[0] = 0;
         v[0] = maximumVelocity;
 
-        for (inti = 1; i < numberOfCars; i++) {
+        for (int i = 1; i < numberOfCars; i++) {
             x[i] = x[i-1] + d;
             v[i] = Math.random() < 0.5 ? 0 : 1;
         }
@@ -100,7 +99,7 @@ public class Freeway implements Drawable{
     public void draw(DrawingPanel panel, Graphics g) {
         if(x==null) return;
         
-        road.setBlock(0, 0, newbyte[roadLength][1]);
+        road.setBlock(0, 0, new byte[roadLength][1]);
 
         for(int i=0; i < numberOfCars; i++)
             road.setValue(x[i], 0, (byte) 1);
