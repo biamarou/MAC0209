@@ -6,6 +6,8 @@ public class FreewayApp extends AbstractSimulation {
     Freeway freeway = new Freeway ();
     DisplayFrame display = new DisplayFrame ("Freeway");
     LatticeFrame spaceTime = new LatticeFrame ("space", "time", "Space Time Diagram");
+    LatticeFrame velDist = new LatticeFrame ("velocity", "cars", "Velocity distribution Diagram");
+    LatticeFrame gapDist = new LatticeFrame ("gap size", "gaps", "Gap distribution Diagram");
 
     public FreewayApp () {
         display.addDrawable(freeway) ;
@@ -17,7 +19,7 @@ public class FreewayApp extends AbstractSimulation {
         freeway.p = control.getDouble("Slow down probability");
         freeway.maximumVelocity = control.getInt("Maximum velocity");
         display.setPreferredMinMax(0, freeway.roadLength, -3, 4);
-        freeway.initialize(spaceTime);
+        freeway.initialize(spaceTime, velDist, gapDist);
     }
 
     public void doStep () {
