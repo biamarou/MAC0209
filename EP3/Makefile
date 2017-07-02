@@ -29,3 +29,7 @@ $(SRCDIR) $(OBJDIR):
 organize: init
 		-$(MV) $(CLASSD) $(OBJDIR)
 		-$(MV) $(SRCD) $(SRCDIR)
+
+.PHONY: clean
+clean:
+	rm -rf $(OBJDIR)
