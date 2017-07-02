@@ -8,9 +8,10 @@ CLASS     := $(patsubst $(SRCDIR)/%.java, $(CLASSDIR)/%.class, $(SRC))
 CLASSD    := $(wildcard $(PWD)/*.class)
 SRCD      := $(wildcard $(PWD)/*.java)
 
+MYCLASSPATH := $(CLASSPATH):./lib/osp.jar
 JC        := javac 
 MV		  := mv
-JCFLAGS   := -d $(CLASSDIR) -cp $(CLASSPATH)
+JCFLAGS   := -d $(CLASSDIR) -cp $(MYCLASSPATH)
 
 .PHONY: compile 
 compile: $(CLASS)
