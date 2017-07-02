@@ -97,7 +97,7 @@ public class Freeway2Lane implements Drawable{
                         canChange = false;
 
                 if (canChange) {
-                    System.out.println("Car " + i + " changed to lane " + changeTo);
+                    //System.out.println("Car " + i + " changed to lane " + changeTo);
                     lane[i] = changeTo;
                 }
             }
