@@ -17,15 +17,17 @@ public class Freeway2LaneTruck implements Drawable{
     public LatticeFrame spaceTime;
     public LatticeFrame carVelDist;
     public LatticeFrame truckVelDist;
+    public LatticeFrame gapDist;
     public double[] distribution;
     private CellLattice road;
 
     //number of iterations before scrolling space-time diagram
 
-    public void initialize(LatticeFrame spaceTime, LatticeFrame carDist, LatticeFrame truckDist) {
+    public void initialize(LatticeFrame spaceTime, LatticeFrame carDist, LatticeFrame truckDist, LatticeFrame gapDist) {
         this.spaceTime = spaceTime;
         carVelDist = carDist;
         truckVelDist = truckDist;
+        this.gapDist = gapDist;
 
         x = new int[numberOfAutos];
         lane = new int[numberOfAutos];
@@ -52,6 +54,10 @@ public class Freeway2LaneTruck implements Drawable{
         truckDist.resizeLattice(maxVelOfType[1] + 1, numberOfType[1]);
         truckDist.setIndexedColor(0, java.awt.Color.RED);
         truckDist.setIndexedColor(1, Color.BLUE);
+
+        gapDist.resizeLattice(roadLength, numberOfAutos);
+        gapDist.setIndexedColor(0, java.awt.Color.RED);
+        gapDist.setIndexedColor(1, java.awt.Color.GREEN);
 
         x[0] = 0;
         v[0] = 0;
@@ -133,6 +139,7 @@ public class Freeway2LaneTruck implements Drawable{
         computeSpaceTimeDiagram();
         computeHistogram(carVelDist, getVelocitiesDistribution(1), numberOfType[0]);
         computeHistogram(truckVelDist, getVelocitiesDistribution(2), numberOfType[1]);
+        computeHistogram(gapDist, getGapDistribution(), numberOfAutos);
     }
 
     public void computeSpaceTimeDiagram() {
@@ -163,6 +170,27 @@ public class Freeway2LaneTruck implements Drawable{
         for (int i = 0; i < numberOfAutos; i++)
             if (this.type[i] == type)
                 distribution[v[i]] ++;
+
+        return distribution;
+    }
+
+    public int[] getGapDistribution() {
+        int[] distribution = new int[roadLength];
+
+        for (int i = 0; i < numberOfAutos; i++) {
+            int d = roadLength;
+            for (int c = 0; c < numberOfAutos; c++) {
+                if (lane[i] == lane[c] && i != c) {
+                    int tmp = x[c] - x[i];
+                    if (x[i] > x[c] && x[c] - x[i] < d)
+                        tmp += roadLength;
+                    if (tmp < d)
+                        d = tmp;
+                }
+            }
+
+            distribution[d]++;
+        }
 
         return distribution;
     }
