@@ -1,7 +1,6 @@
 import org.opensourcephysics.controls.*;
 import org.opensourcephysics.frames.*;
 
-
 public class FreewayApp extends AbstractSimulation {
 
     Freeway freeway = new Freeway ();

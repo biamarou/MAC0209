@@ -6,6 +6,8 @@ public class FreewayApp2LaneTruck extends AbstractSimulation {
     Freeway2LaneTruck freeway = new Freeway2LaneTruck();
     DisplayFrame display = new DisplayFrame ("Freeway");
     LatticeFrame spaceTime = new LatticeFrame ("space", "time", "Space Time Diagram");
+    LatticeFrame carDist = new LatticeFrame ("velocity", "cars", "Velocity distribution of cars");
+    LatticeFrame truckDist = new LatticeFrame ("gap size", "gaps", "Velocity distribution of trucks");
 
     public FreewayApp2LaneTruck() {
         display.addDrawable(freeway) ;
@@ -24,7 +26,7 @@ public class FreewayApp2LaneTruck extends AbstractSimulation {
         int maxvel[] = {car_max, truck_max};
         freeway.maxVelOfType = maxvel;
         display.setPreferredMinMax(0, freeway.roadLength, -3, 4);
-        freeway.initialize(spaceTime);
+        freeway.initialize(spaceTime, carDist, truckDist);
     }
 
     public void doStep () {

@@ -138,7 +138,7 @@ public class Freeway implements Drawable{
             carLocations[i] = x[i];
 
         Arrays.sort(carLocations);
-        
+
         distribution[carLocations[0]]++;
         for (int i = 1; i < numberOfCars; i++)
             distribution[carLocations[i] - carLocations[i - 1] - 1] ++;

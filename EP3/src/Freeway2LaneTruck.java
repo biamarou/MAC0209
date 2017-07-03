@@ -15,13 +15,17 @@ public class Freeway2LaneTruck implements Drawable{
     public int[] v, x, lane, xtemp, type, numberOfType, maxVelOfType;
     public double[] flows, vels;
     public LatticeFrame spaceTime;
+    public LatticeFrame carVelDist;
+    public LatticeFrame truckVelDist;
     public double[] distribution;
     private CellLattice road;
 
     //number of iterations before scrolling space-time diagram
 
-    public void initialize(LatticeFrame spaceTime) {
+    public void initialize(LatticeFrame spaceTime, LatticeFrame carDist, LatticeFrame truckDist) {
         this.spaceTime = spaceTime;
+        carVelDist = carDist;
+        truckVelDist = truckDist;
 
         x = new int[numberOfAutos];
         lane = new int[numberOfAutos];
@@ -40,6 +44,14 @@ public class Freeway2LaneTruck implements Drawable{
         spaceTime.setIndexedColor(0, Color.RED);
         spaceTime.setIndexedColor(1, Color.GREEN);
         spaceTime.setIndexedColor(2, Color.BLUE);
+
+        carDist.resizeLattice(maxVelOfType[0] + 1, numberOfType[0]);
+        carDist.setIndexedColor(0, java.awt.Color.RED);
+        carDist.setIndexedColor(1, java.awt.Color.GREEN);
+
+        truckDist.resizeLattice(maxVelOfType[1] + 1, numberOfType[1]);
+        truckDist.setIndexedColor(0, java.awt.Color.RED);
+        truckDist.setIndexedColor(1, Color.BLUE);
 
         x[0] = 0;
         v[0] = 0;
@@ -119,6 +131,8 @@ public class Freeway2LaneTruck implements Drawable{
 
         steps++;
         computeSpaceTimeDiagram();
+        computeHistogram(carVelDist, getVelocitiesDistribution(1), numberOfType[0]);
+        computeHistogram(truckVelDist, getVelocitiesDistribution(2), numberOfType[1]);
     }
 
     public void computeSpaceTimeDiagram() {
@@ -138,6 +152,29 @@ public class Freeway2LaneTruck implements Drawable{
 
             for(int i=0;i<numberOfAutos;i++)
                 spaceTime.setValue(x[i], scrollTime-1, type[i]); //add new row
+        }
+    }
+
+    public int[] getVelocitiesDistribution(int type) {
+        int[] distribution = new int[maxVelOfType[type - 1] + 1];
+        for (int i = 0; i < maxVelOfType[type - 1]; i++)
+            distribution[i] = 0;
+
+        for (int i = 0; i < numberOfAutos; i++)
+            if (this.type[i] == type)
+                distribution[v[i]] ++;
+
+        return distribution;
+    }
+
+    public void computeHistogram(LatticeFrame frame, int[] distribution, int maxy) {
+        for (int i = 0; i < distribution.length; i++) {
+            for (int j = 0; j < maxy; j++) {
+                if (distribution[i] <= j)
+                    frame.setValue(i, j, 0);
+                else
+                    frame.setValue(i, j, 1);
+            }
         }
     }
 
