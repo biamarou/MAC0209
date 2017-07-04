@@ -1,0 +1,112 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\renewcommand{\rmdefault}{ptm}
+
+\title{Relatório EP2}
+\author{Beatriz F. Marouelli, Bruno B. Scholl, \\João H. Luciano, Leonardo Lana Violin Oliveira, \\ Lucas B. Yau, Victor H. Seiji}
+\date{03 de Julho de 2017}
+
+\begin{document}
+\maketitle
+
+\section*{Introdução}
+Para este exercício-programa fizemos os itens do Exercício 14.5 do livro
+\textit{An Introduction to Computer Simulation Methods Aplications to Physical
+Systems}.
+
+\section*{Avisos}
+Para realizar os exercícios abaixo foram modificados os programas em java fornecidos
+pelo pacote do livro. Alguns dos parâmetros não podiam ser modificados, como os eixos
+dos gráficos, mas contextualizando em cada item é possível inferir qual seria a marcação
+correta.
+
+Em relação aos vídeos, gravamos as simulações com o seguinte padrão: começar a partir do
+step 100 (recomendação do livro de evoluir o sistema antes de iniciar a gravação), e parar
+no step 300.
+
+\section*{Respostas dos itens}
+\subsection*{A}
+Conforme a densidade aumenta (aumento do número de carros maior que o aumento do
+tamanho da pista) o número de congestionamentos (números de grandes blocos verdes 
+na simulação) aumenta também. A partir da densidade de $0.140$ há trânsito, como 
+descobrimos experimentalmente através das simulações.
+
+Como podemos observar nos gráficos gerados de \textit{flow X density},
+inicialmente temos um fluxo baixo, devido à baixa densidade, seguido de
+um pico no fluxo quando a densidade atinge cerca de $0.2$. Após este pico,
+o fluxo inicia um decaimento conforme a densidade aumenta.  
+\subsection*{B}
+
+\subsection*{C}
+Os métodos foram adicionados à classe \textit{FreeWay}. Os gráficos gerados 
+por esses métodos podem ser observados nos vídeos do item d).
+
+\subsection*{D}
+Quando o parâmetro velocidade foi modificado para $v_{max} = 1$, o fluxo de carros é
+bem uniforme, sem o surgimento de aglomerados. No caso em que $v_{max} = 2$, começam
+a surgir pequenos agrupamentos, mas que se desfazem rapidamente. Por fim,
+quando a velocidade é alterada para $v_{max} = 5$, congestionamentos mais demorados
+aparecem. 
+
+Isto se deve porque quanto maior a velocidade, mais rapidamente os carros 
+percorrem a via, e por consequência encontram com mais rapidez um carro
+que tenha sido aleatóriamente escolhido para frear, gerando o engarrafamento.
+
+\subsection*{E}
+Neste item modificamos a probabilidade de um carro ser escolhido aleatoriamente para ter sua
+velocidade reduzida. Primeiro ela é modificada para $p = 0.2$, e podemos observar nos
+vídeos que não ocorrem aglomerados, pois pouquíssimos carros tem sua velocidade reduzida.
+Já quando modificamos a probabilidade para $p = 0.8$, fica bem visível a formação de
+congestionamentos, pois a chance de um carro ter sua velocidade reduzida é alta, obrigando muitos
+outros carros a abaixarem sua velocidade também. 
+
+\subsection*{F}
+Este item foi simulado com 10 carros e 20 carros em circulação. Quando apenas 10 carros estão
+circulando não há grande variação no fluxo em relação à simulação sem rampas de entrada e saída.
+No entanto, ao aumentar o número de carros, grandes blocos de aglomeração começam a surgir. Isto
+ocorre porque quando um carro entra na via principal, sua velocidade está menor em relação aos que
+já se encontram nela, forçando esses carros a reduzirem de velocidade. O mesmo ocorre na saída
+do carro da via principal, ele reduz de velocidade primeiro, o que também força a redução da velocidade
+dos carros que estão atrás dele.
+
+\subsection*{G}
+Neste item também utilizamos os parâmetros de 10 e depois 20 carros em circulação.
+Novamente, quando temos apenas 10 carros em circulação não é notada grande mudança de fluxo 
+em relação à situação de uma via simples, apenas alguns pequenos agrupamentos por consequência
+de uma mudança de faixa, mas que se dissipam rapidamente.
+Quando modificamos o número de carros para 20, já ficam mais visíveis os congestionamentos causados
+pela mudança de faixa dos carros, que forçam a redução da velocidade dos demais.
+
+\subsection*{H}
+
+
+\section*{Contribuições}
+As contribuições dos membros do grupo em ordem alfabética:
+
+\textbf{Beatriz}: Gravações das animações, itens D e E e relatório.
+
+\textbf{Bruno}: Edição do vídeo e item A.
+
+\textbf{João}: Relatório.
+
+\textbf{Leonardo}: Relatório e itens A e B.
+
+\textbf{Lucas}: item F.
+
+\textbf{Victor}: itens C, G e H.
+
+\section*{Link do vídeo}
+Para assistir o vídeo, clique
+\href{https://www.youtube.com/watch?v=Tx7dhtJjCZc&feature=youtu.be}{aqui}
+
+\end{document}
